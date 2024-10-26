@@ -3,10 +3,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 public class ConfigHandler {
-    private static Properties generalData ;
     private static Properties registeartionTestData;
+    private static Properties configurationData ;
+
     public static final String REGISTERATION_DATA_PATH = "resources/config/RegisteartionTestData.properties";
-    public static final String GENERAL_DATA_PATH = "resources/config/GeneralData.properties" ;
+    public static final String CONFIGURATION_DATA_PATH = "resources/config/GeneralData.properties" ;
     public static void setConfigProperties() throws IOException {
         setRegisterationDataProperties() ;
 
@@ -16,13 +17,13 @@ public class ConfigHandler {
         registeartionTestData = new Properties();
         registeartionTestData.load(new FileInputStream(REGISTERATION_DATA_PATH));
     }
-    public static void setGeneralDataProperties() throws IOException {
+    public static void setConfigurationDataProperties() throws IOException {
         registeartionTestData = new Properties();
-        registeartionTestData.load(new FileInputStream(GENERAL_DATA_PATH));
+        registeartionTestData.load(new FileInputStream(CONFIGURATION_DATA_PATH));
     }
 
     public static Properties getRegisterationDataProperties() {
         return registeartionTestData;
     }
-    public static Properties getGeneralDataProperties(){return generalData;}
+    public static Properties getConfigurationDataProperties(){return configurationData;}
 }

@@ -9,28 +9,30 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.NoSuchElementException;
 
 public class BasePage {
-
     protected WebDriver driver;
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     public void scrollToElement(By locator) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", locator);
     }
     public WebElement findElement(By locator) {
-        try {
-            return driver.findElement(locator);
-        } catch (NoSuchElementException e) {
-            System.out.println("Element not found: " + locator);
-            return null;
-        }
+       return driver.findElement(locator);
+
     }
     public void doubleClick(By locator) {
         try {
             WebElement element = driver.findElement(locator);
             Actions actions = new Actions(driver);
             actions.doubleClick(element).perform();
-
         } catch (NoSuchElementException e) {
             System.out.println("Element not found: " + locator);
         }
+    }
+    public void clickWithJS(By locator){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", driver.findElement(locator));
     }
 }
