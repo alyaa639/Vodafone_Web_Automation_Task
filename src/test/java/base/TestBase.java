@@ -10,9 +10,7 @@ import java.util.Properties;
 public class TestBase {
     protected WebDriver driver;
     public static Properties properties = new Properties();
-
     protected static Properties registeartionTestData;
-
     public void driverSetUp() {
         properties = ConfigHandler.getGeneralDataProperties();
         WebDriverManager.chromedriver().setup();
