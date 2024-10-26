@@ -1,5 +1,6 @@
 package utils;
 import base.TestBase;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -18,5 +19,9 @@ public class Hooks extends TestBase {
     public void setUp() throws MalformedURLException {
         driverSetUp() ;
         System.out.println("driver is being called...");
+    }
+    @After(order=0)
+    public void tearDown(){
+        quitDriver();
     }
 }

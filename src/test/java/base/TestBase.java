@@ -20,4 +20,9 @@ public class TestBase {
         driver.manage().window().maximize();
         driver.get(properties.getProperty("WebsiteURL"));
     }
+    public void quitDriver() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }
