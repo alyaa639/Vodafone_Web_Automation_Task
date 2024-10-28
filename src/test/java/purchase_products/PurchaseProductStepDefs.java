@@ -1,22 +1,27 @@
 package purchase_products;
+import base.TestBase;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class PurchaseProductStepDefs {
+public class PurchaseProductStepDefs extends TestBase {
     @When("click on login option in profile icon drop down menu in landing screen")
     public void clickOnLoginOptionInProfileIconDropDownMenuInLandingScreen() {
+        landingPage.clickOnLoginOptionInProfileIconDropdownMenu();
     }
 
     @When("enter email {string} in email field in login page")
-    public void enterUsernameInUsernameFieldInLoginPage(String arg0, String arg1) {
+    public void enterUsernameInUsernameFieldInLoginPage(String email) {
+        loginPage.enterEmailInEmailField(email);
     }
 
     @When("enter password in password {string} field in login page")
-    public void enterPasswordInPasswordFieldInLoginPage(String arg0, String arg1) {
+    public void enterPasswordInPasswordFieldInLoginPage(String password) {
+        loginPage.enterPasswordInPasswordField(password);
     }
 
     @When("click on login button in login page")
     public void clickOnLoginButtonInLoginPage() {
+        loginPage.clickOnLoginButton();
     }
 
     @When("click on keyboard checkbox in Categories section in home page")

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.LandingPage;
+import pages.LoginPage;
 import pages.RegistrationPage;
 import utils.ConfigHandler;
 
@@ -15,6 +16,7 @@ public class TestBase {
 
    protected LandingPage landingPage = new LandingPage(driver);
    public RegistrationPage registrationPage = new RegistrationPage(driver);
+   public LoginPage loginPage= new LoginPage(driver) ;
    public HomePage homePage = new HomePage(driver) ;
     public static WebDriver driver;
 

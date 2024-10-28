@@ -34,5 +34,5 @@ Feature: Login and purchase a product in unicorn website
     Then  shipping address should be "<shippingAddress>" in order summary page
     And   total price should be equal to the sum of the products in cart page
     Examples:
-      | username | password | keyboardProduct | price | successMessage | laptopProduct | country | region | address | code | phone | shippingAddress |
-      | male     |
+      | email           | password     | keyboardProduct | price | successMessage | laptopProduct | country | region | address | code | phone | shippingAddress |
+      | alyaa@gmail.com | Password@123 |
