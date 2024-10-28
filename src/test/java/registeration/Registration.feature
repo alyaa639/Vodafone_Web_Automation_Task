@@ -1,5 +1,5 @@
-Feature: Login to CIB mobile banking app
-  Scenario Outline: Login with valid user
+Feature: Register with valid data in unicorn website
+  Scenario Outline: Register to unicorn website
     Given unicorn website opened successfully
     When  click on profile icon in landing screen
     And   click on register option in profile icon drop down menu in landing screen
