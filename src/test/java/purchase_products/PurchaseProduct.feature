@@ -10,7 +10,7 @@ Feature: Login and purchase a product in unicorn website
     When  click on keyboard checkbox in Categories section in home page
     And   click on apply button in home page
     Then  All items appear should be keyboard items only in products page
-    When  click on product "<keyboardProduct>" in products page
+    When  click on keyboard product in products page
     Then  product name "<keyboardProduct>" and product price "<price>" should appear in keyboard page
     And   cart should be empty in the header
     When  click on add to cart button in keyboard page
@@ -34,5 +34,5 @@ Feature: Login and purchase a product in unicorn website
     Then  shipping address should be "<shippingAddress>" in order summary page
     And   total price should be equal to the sum of the products in cart page
     Examples:
-      | email           | password     | keyboardProduct | price | successMessage | laptopProduct | country | region | address | code | phone | shippingAddress |
-      | alyaa@gmail.com | Password@123 |
+      | email           | password     | keyboardProduct                                            | price  | successMessage | laptopProduct | country | region | address | code | phone | shippingAddress |
+      | alyaa@gmail.com | Password@123 | Logitech Wireless Keyboard and Mouse Combo - Black (MK270) | $33.00 |Added To Cart   |

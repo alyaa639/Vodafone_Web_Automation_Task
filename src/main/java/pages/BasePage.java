@@ -17,6 +17,7 @@ public class BasePage {
     public void scrollToElement(By locator) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", locator);
+
     }
     public WebElement findElement(By locator) {
        return driver.findElement(locator);

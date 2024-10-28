@@ -2,6 +2,7 @@ package purchase_products;
 import base.TestBase;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
 
 public class PurchaseProductStepDefs extends TestBase {
     @When("click on login option in profile icon drop down menu in landing screen")
@@ -26,46 +27,59 @@ public class PurchaseProductStepDefs extends TestBase {
 
     @When("click on keyboard checkbox in Categories section in home page")
     public void clickOnKeyboardCheckboxInCategoriesSectionInHomePage() {
+        homePage.clickOnKeyboardCheckBox();
     }
 
     @When("click on apply button in home page")
     public void clickOnApplyButtonInHomePage() {
+        homePage.clickOnApplyButton();
     }
 
     @Then("All items appear should be keyboard items only in products page")
     public void allItemsAppearShouldBeKeyboardItemsOnlyInProductsPage() {
+      Assert.assertTrue(productsPage.checkElementsContainKeyboard());
     }
 
-    @When("click on product {string} in products page")
-    public void clickOnProductInProductsPage(String arg0, String arg1) {
+    @When("click on keyboard product in products page")
+    public void clickOnKeyboardProductInProductsPage() {
+        productsPage.clickOnKeyBoardItem();
     }
 
     @Then("product name {string} and product price {string} should appear in keyboard page")
-    public void productNameAndProductPriceShouldAppearInKeyboardPage(String arg0, String arg1, String arg2, String arg3) {
+    public void productNameAndProductPriceShouldAppearInKeyboardPage(String keyboardProduct, String price) {
+        Assert.assertEquals(keyboardProductPage.getKeyboardProductName() ,keyboardProduct );
+        Assert.assertEquals(keyboardProductPage.getKeyboardProductPrice() ,price );
     }
 
     @Then("cart should be empty in the header")
     public void cartShouldBeEmptyInTheHeader() {
+        Assert.assertTrue(websiteHeader.getEmptyCart());
     }
 
     @When("click on add to cart button in keyboard page")
     public void clickOnAddToCartButtonInKeyboardPage() {
+        keyboardProductPage.clickOnAddToCartButton();
     }
 
     @Then("success message {string} should appear successfully keyboard page")
-    public void successMessageShouldAppearSuccessfullyKeyboardPage(String arg0, String arg1) {
+    public void successMessageShouldAppearSuccessfullyKeyboardPage(String successMessage) {
+        Assert.assertEquals(keyboardProductPage.getSuccessMessage() , successMessage);
+
     }
 
     @Then("cart should contain one element in the header")
     public void cartShouldContainOneElementInTheHeader() {
+        Assert.assertTrue(websiteHeader.getCartContainOneElement());
     }
 
     @When("click on products button in the header")
     public void clickOnProductsButtonInTheHeader() {
+        websiteHeader.clickOnProductSectionIcon();
     }
 
     @When("Click on laptop checkbox in categories section in home page")
     public void clickOnLaptopCheckboxInCategoriesSectionInHomePage() {
+        homePage.clickOnLaptopCheckBox();
     }
 
     @When("click on laptop product {string} in laptops page")
