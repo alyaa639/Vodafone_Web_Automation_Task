@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
     private By homeTitle = By.xpath("//a[text()='Home']");
-    private By keyboardCheckBox = By.xpath("//button[contains(text(), 'keyboard')]");
+    private By keyboardCheckBox = By.xpath("//li//button[normalize-space()='keyboard']");
     private By applyButton = By.xpath("//button[text()='Apply']");
-    private By laptopCheckBox = By.xpath("//button[span[@class='checkmark'] and contains(text(), 'laptop')]") ;
+    private By laptopCheckBox = By.xpath("//button[normalize-space()='laptop']") ;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -18,9 +18,12 @@ public class HomePage extends BasePage {
     public void clickOnKeyboardCheckBox() {
         findElement(keyboardCheckBox).click();
     }
-    public void clickOnApplyButton() {
-        scrollToElement(applyButton);
+    public void     clickOnApplyButton() throws InterruptedException {
+        scrollDown(applyButton);
+        scrollUp(applyButton);
+        Thread.sleep(3000);
         findElement(applyButton).click();
+
     }
     public void clickOnLaptopCheckBox(){
         findElement(laptopCheckBox).click();

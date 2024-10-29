@@ -1,11 +1,11 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.NoSuchElementException;
 
 public class BasePage {
@@ -14,14 +14,39 @@ public class BasePage {
         this.driver = driver;
     }
 
-    public void scrollToElement(By locator) {
+    public void scrollDown(By locator) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", locator);
-
+        try {
+            // Find the element using the locator
+            WebElement element = driver.findElement(locator);
+            // Scroll to the element
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found for scrolling down: " + locator);
+        }
     }
-    public WebElement findElement(By locator) {
-       return driver.findElement(locator);
 
+    // Method to scroll up to an element
+    public void scrollUp(By locator) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        try {
+            // Find the element using the locator
+            WebElement element = driver.findElement(locator);
+            // Scroll to the element
+            js.executeScript("arguments[0].scrollIntoView(false);", element);
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found for scrolling up: " + locator);
+        }
+    }
+
+    public WebElement findElement(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Adjust timeout as needed
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (TimeoutException e) {
+            System.out.println("Element located by " + locator + " not visible after 10 seconds");
+            return null;
+        }
     }
     public void doubleClick(By locator) {
         try {

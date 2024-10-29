@@ -13,7 +13,7 @@ public class ProductsPage extends BasePage{
         return findElement(KeyboardProducts).isDisplayed() ;
     }
     public void clickOnKeyBoardItem(){
-        scrollToElement(KeyBoardAndMouseProduct);
+        scrollUp(KeyBoardAndMouseProduct);
         findElement(KeyBoardAndMouseProduct).click();
     }
 }

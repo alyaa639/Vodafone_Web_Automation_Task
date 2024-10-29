@@ -3,10 +3,11 @@ import base.TestBase;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
+import static pages.CartPage.trimPrice;
 
 public class PurchaseProductStepDefs extends TestBase {
     @When("click on login option in profile icon drop down menu in landing screen")
-    public void clickOnLoginOptionInProfileIconDropDownMenuInLandingScreen() {
+    public void clickOnLoginOptionInProfileIconDropDownMenuInLandingScreen(){
         landingPage.clickOnLoginOptionInProfileIconDropdownMenu();
     }
 
@@ -31,7 +32,7 @@ public class PurchaseProductStepDefs extends TestBase {
     }
 
     @When("click on apply button in home page")
-    public void clickOnApplyButtonInHomePage() {
+    public void clickOnApplyButtonInHomePage() throws InterruptedException {
         homePage.clickOnApplyButton();
     }
 
@@ -82,55 +83,89 @@ public class PurchaseProductStepDefs extends TestBase {
         homePage.clickOnLaptopCheckBox();
     }
 
-    @When("click on laptop product {string} in laptops page")
-    public void clickOnLaptopProductInLaptopsPage(String arg0, String arg1) {
+    @When("click on laptop product in laptops page")
+    public void clickOnLaptopProductInLaptopsPage() {
+        laptopProductPage.clickOnDellLaptop();
     }
-
     @When("click on add to cart button in laptops page")
     public void clickOnAddToCartButtonInLaptopsPage() {
+        laptopProductPage.clickOnAddToCartButton();
     }
 
     @When("click on cart button in the header")
     public void clickOnCartButtonInTheHeader() {
+        websiteHeader.clickOnShoppingCartIcon();
     }
 
     @When("click in view cart button in the header")
     public void clickInViewCartButtonInTheHeader() {
+        websiteHeader.clickOnViewCartOption();
     }
 
     @Then("title and price for products appear successfully in cart page")
     public void titleAndPriceForProductsAppearSuccessfullyInCartPage() {
+        Assert.assertTrue( cartPage.getKeyboardPrice());
+        Assert.assertTrue(cartPage.getKeyboardName());
+        Assert.assertTrue(cartPage.getLaptopName());
+        Assert.assertTrue(cartPage.getLaptopPrice());
     }
 
     @Then("total price should be equal to the sum of the products in cart page")
     public void totalPriceShouldBeEqualToTheSumOfTheProductsInCartPage() {
+      int keyboardPrice = Integer.parseInt(trimPrice(cartPage.getKeyboardPriceValue()));
+      int laptopPrice = Integer.parseInt(trimPrice(cartPage.getLaptopPriceValue()));
+      int grandTotal = Integer.parseInt(trimPrice(cartPage.getGrandTextValue()));
+      int totalSumOfProductsValue = keyboardPrice + laptopPrice ;
+      Assert.assertEquals(grandTotal ,totalSumOfProductsValue );
     }
 
     @When("click on proceed to checkout button in cart page")
     public void clickOnProceedToCheckoutButtonInCartPage() {
+        cartPage.clickOnProceedToCheckoutButton();
     }
 
-    @When("select country {string} and region {string} in shipping details section in cart page")
-    public void selectCountryAndRegionInShippingDetailsSectionInCartPage(String arg0, String arg1, String arg2, String arg3) {
+    @When("select country Egypt and region cairo in shipping details page")
+    public void selectCountryAndRegionInShippingDetailstPage() throws InterruptedException {
+        shippingDetailsPage.selectOnEgyptCountry();
+        shippingDetailsPage.clickOnAlexandriaRegionOption();
     }
 
-    @When("enter address {string} in address field and postal code {string} in code field  and phone number {string} in phone field in shipping details section in cart page")
-    public void enterAddressInAddressFieldAndPostalCodeInCodeFieldAndPhoneNumberInPhoneFieldInShippingDetailsSectionInCartPage(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
+    @When("enter address {string} in address field and postal code {string} in code field  and phone number {string} in phone field in shipping details page")
+    public void enterAddressInAddressFieldAndPostalCodeInCodeFieldAndPhoneNumberInPhoneFieldInShippingDetailsPage(String address, String code , String phoneNum) {
+        shippingDetailsPage.enterAddressInAddressField(address);
+        shippingDetailsPage.enterCodeInPostalCodeField(code);
+        shippingDetailsPage.enterPhoneNumberInPhoneNumberField(phoneNum);
     }
 
-    @When("click on cash on delivery check box in shipping details section in cart page")
-    public void clickOnCashOnDeliveryCheckBoxInShippingDetailsSectionInCartPage() {
+    @When("click on cash on delivery check box in shipping details page")
+    public void clickOnCashOnDeliveryCheckBoxInShippingDetailsPage() {
+        shippingDetailsPage.clickOnCashInDeliveryCheckBox();
     }
 
-    @When("click on confirm button in shipping details section in cart page")
-    public void clickOnConfirmButtonInShippingDetailsSectionInCartPage() {
+    @When("click on confirm button in shipping details page")
+    public void clickOnConfirmButtonInShippingDetailsPage() {
+        shippingDetailsPage.clickOnconfirmButton();
     }
 
     @When("click on the order number in order summary page")
     public void clickOnTheOrderNumberInOrderSummaryPage() {
+        orderSummaryPage.clickOnOrderNumber();
     }
 
     @Then("shipping address should be {string} in order summary page")
-    public void shippingAddressShouldBeInOrderSummaryPage(String arg0, String arg1) {
+    public void shippingAddressShouldBeInOrderSummaryPage(String shippingAddress) {
+        Assert.assertEquals( orderSummaryPage.getShippingAddress() ,shippingAddress );
+
+    }
+
+
+    @Then("laptop name should be  {string} in laptop screen")
+    public void laptopNameShouldBeInLaptopScreen(String laptopProduct) {
+        Assert.assertTrue(laptopProductPage.getLaptopProduct().contains(laptopProduct), "Text does not contain the expected partial text.");
+
+    }
+    @Then("total price should be equal {string} in order summary page")
+    public void totalPriceShouldBeEqualInOrderSummaryPage(String totalPrice) {
+       Assert.assertEquals(orderSummaryPage.getTotalPrice() ,totalPrice );
     }
 }

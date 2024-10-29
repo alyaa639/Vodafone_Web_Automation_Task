@@ -15,6 +15,10 @@ public class TestBase {
    public ProductsPage productsPage = new ProductsPage(driver) ;
    public KeyboardProductPage keyboardProductPage = new KeyboardProductPage(driver) ;
    public WebsiteHeader websiteHeader = new WebsiteHeader(driver) ;
+   public LaptopProductPage laptopProductPage = new LaptopProductPage(driver) ;
+   public CartPage cartPage = new CartPage(driver) ;
+   public ShippingDetailsPage shippingDetailsPage= new ShippingDetailsPage(driver) ;
+   public OrderSummaryPage orderSummaryPage= new OrderSummaryPage(driver) ;
     public static WebDriver driver;
 
 

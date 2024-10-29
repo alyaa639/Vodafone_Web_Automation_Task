@@ -19,20 +19,23 @@ Feature: Login and purchase a product in unicorn website
     When  click on products button in the header
     And   Click on laptop checkbox in categories section in home page
     And   click on apply button in home page
-    And   click on laptop product "<laptopProduct>" in laptops page
+    And   click on laptop product in laptops page
     And   click on add to cart button in laptops page
     And   click on cart button in the header
     And   click in view cart button in the header
     Then  title and price for products appear successfully in cart page
     And   total price should be equal to the sum of the products in cart page
     When  click on proceed to checkout button in cart page
-    And   select country "<country>" and region "<region>" in shipping details section in cart page
-    And   enter address "<address>" in address field and postal code "<code>" in code field  and phone number "<phone>" in phone field in shipping details section in cart page
-    And   click on cash on delivery check box in shipping details section in cart page
-    And   click on confirm button in shipping details section in cart page
+    And   select country Egypt and region cairo in shipping details page
+    And   enter address "<address>" in address field and postal code "<code>" in code field  and phone number "<phone>" in phone field in shipping details page
+    And   click on cash on delivery check box in shipping details page
+    And   click on confirm button in shipping details page
     And   click on the order number in order summary page
     Then  shipping address should be "<shippingAddress>" in order summary page
-    And   total price should be equal to the sum of the products in cart page
+    And   total price should be equal "<totalPrice>" in order summary page
+
+
     Examples:
-      | email           | password     | keyboardProduct                                            | price  | successMessage | laptopProduct | country | region | address | code | phone | shippingAddress |
-      | alyaa@gmail.com | Password@123 | Logitech Wireless Keyboard and Mouse Combo - Black (MK270) | $33.00 |Added To Cart   |
+      | email           | password     | keyboardProduct                                            | price | successMessage | laptopProduct                                                | address    | code | phone       | shippingAddress        | totalPrice   |
+      | alyaa@gmail.com | Password@123 | Logitech Wireless Keyboard and Mouse Combo - Black (MK270) | $33   | Added To Cart  | Dell Chromebook 11 3120 (11.6", Intel Celeron N2840, 4GB RAM | Alex,Egypt | 020  | 01001010110 | Address 1 : Alex,Egypt | Total : $733 |
+

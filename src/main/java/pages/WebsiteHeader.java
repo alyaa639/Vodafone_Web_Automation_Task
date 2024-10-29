@@ -7,6 +7,8 @@ public class WebsiteHeader extends BasePage{
     private By emptyCartIcon = By.xpath("//span[@class='count-style' and text()='0']") ;
     private By cartContainOneElement = By.xpath("//span[@class='count-style' and text()='1']") ;
     private By productSectionIcon = By.xpath("//a[@href='/shop-grid-standard' and text()='Products']") ;
+    private By cartIcon = By.xpath("//i[@class='pe-7s-shopbag']") ;
+    private By viewCartOption = By.xpath("//a[@class='default-btn' and text()='view cart']") ;
     public WebsiteHeader(WebDriver driver) {
         super(driver);
     }
@@ -18,5 +20,11 @@ public class WebsiteHeader extends BasePage{
     }
     public void clickOnProductSectionIcon(){
         findElement(productSectionIcon).click();
+    }
+    public void clickOnShoppingCartIcon(){
+        findElement(cartIcon).click();
+    }
+    public void clickOnViewCartOption(){
+        findElement(viewCartOption).click();
     }
 }
